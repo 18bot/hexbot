@@ -5,4 +5,5 @@ unity/Library
 unity/Temp
 unity/obj
 core/projects/windows/tmp/
+core/projects/windows/hexbot.sdf
 unity/Assets/Plugins/hexbot*
