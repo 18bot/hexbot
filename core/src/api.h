@@ -13,20 +13,26 @@ namespace api
     typedef bool (*RequestCameraSnapshotCallback) ();
 };
 
+#ifdef WIN32
+#define SPEC_API __declspec(dllexport)
+#else
+#define SPEC_API  
+#endif
+
 // api itself
 
 extern "C"
 {
-    int RoboInit(
+	SPEC_API int RoboInit(
         api::LogCallback logCallback,
         api::GetGyroscopeDataCallback getGyroscopeDataCallback,
         api::GetAccelerometerDataCallback getAccelerometerDataCallback,
         api::MoveServoCallback moveServoCallback, api::RequestCameraSnapshotCallback requestCameraSnapshotCallback
     );
     
-    void RoboUpdate(float dt);
+	SPEC_API void RoboUpdate(float dt);
     
-    void RoboCameraSnapshot(int width, int height, int dataLength, void* data);
+	SPEC_API void RoboCameraSnapshot(int width, int height, int dataLength, void* data);
 }
 
 #endif

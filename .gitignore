@@ -4,3 +4,5 @@ unity/Assets/Plugins/hexbot.bundle
 unity/Library
 unity/Temp
 unity/obj
+core/projects/windows/tmp/
+unity/Assets/Plugins/hexbot*

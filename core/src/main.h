@@ -7,6 +7,7 @@
 #include <memory>
 #include <string>
 #include <random>
+#include <functional>
 
 typedef std::shared_ptr<class Hexbot> HexbotPtr;
 
