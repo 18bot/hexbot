@@ -149,7 +149,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = NO;
-				INFOPLIST_FILE = "hexbot copy-Info.plist";
+				INFOPLIST_FILE = "hexbot-Info.plist";
 				INSTALL_PATH = ../../../unity/Assets/Plugins;
 				PRODUCT_BUNDLE_IDENTIFIER = desertkun.hexbot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -163,7 +163,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = NO;
-				INFOPLIST_FILE = "hexbot copy-Info.plist";
+				INFOPLIST_FILE = "hexbot-Info.plist";
 				INSTALL_PATH = ../../../unity/Assets/Plugins;
 				PRODUCT_BUNDLE_IDENTIFIER = desertkun.hexbot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
