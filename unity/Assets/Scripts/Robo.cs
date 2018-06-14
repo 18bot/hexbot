@@ -25,6 +25,7 @@ public class Robo : MonoBehaviour
 
     [DllImport ("hexbot")]
     private static extern int RoboInit(
+        IntPtr contentsDirectory,
         LogCallback logCallback,
         GetGyroscopeDataCallback getGyroscopeDataCallback,
         GetAccelerometerDataCallback getAccelerometerDataCallback,
@@ -102,9 +103,17 @@ public class Robo : MonoBehaviour
         DelegateMoveServo = new MoveServoCallback(InternalMoveServo);
         DelegateRequestCameraSnapshot = new RequestCameraSnapshotCallback(InternalRequestCameraSnapshot);
 
-        int result = RoboInit(DelegateLog, DelegateGetGyroscopeData, 
-                              DelegateGetAccelerometerData, DelegateMoveServo,
-                              DelegateRequestCameraSnapshot);
+        IntPtr contentsDirectory = Marshal.StringToHGlobalAnsi("test");
+
+        int result = RoboInit(
+            contentsDirectory,
+            DelegateLog, 
+            DelegateGetGyroscopeData, 
+            DelegateGetAccelerometerData, 
+            DelegateMoveServo,
+            DelegateRequestCameraSnapshot);
+
+        Marshal.FreeHGlobal(contentsDirectory);
 
         Debug.Log("Delegate init: " + result);
     }

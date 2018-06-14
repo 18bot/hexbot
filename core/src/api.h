@@ -24,10 +24,12 @@ namespace api
 extern "C"
 {
 	SPEC_API int RoboInit(
+        const char* contentsDirectory,
         api::LogCallback logCallback,
         api::GetGyroscopeDataCallback getGyroscopeDataCallback,
         api::GetAccelerometerDataCallback getAccelerometerDataCallback,
-        api::MoveServoCallback moveServoCallback, api::RequestCameraSnapshotCallback requestCameraSnapshotCallback
+        api::MoveServoCallback moveServoCallback,
+        api::RequestCameraSnapshotCallback requestCameraSnapshotCallback
     );
     
 	SPEC_API void RoboUpdate(float dt);

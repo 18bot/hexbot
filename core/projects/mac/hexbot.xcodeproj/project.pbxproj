@@ -7,26 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D1881E6C1F2BF4AD00A42560 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1881E681F2BF4AD00A42560 /* main.cpp */; };
-		D1881E6D1F2BF4AD00A42560 /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1881E6A1F2BF4AD00A42560 /* api.cpp */; };
-		D1881E6F1F2BF76A00A42560 /* hexbot.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = D1881E561F2BF37500A42560 /* hexbot.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D12A028F20D2268A0033E761 /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1881E6A1F2BF4AD00A42560 /* api.cpp */; };
+		D12A029020D2268A0033E761 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1881E681F2BF4AD00A42560 /* main.cpp */; };
+		D12A029A20D227BB0033E761 /* hexbot.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = D12A029820D2268A0033E761 /* hexbot.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D1881E6E1F2BF76000A42560 /* CopyFiles */ = {
+		D12A029320D2268A0033E761 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = ../../../../unity/Assets/Plugins;
+			dstPath = ../../../../unity/builds/mac/hexbot.app/Contents/Plugins;
 			dstSubfolderSpec = 16;
 			files = (
-				D1881E6F1F2BF76A00A42560 /* hexbot.bundle in CopyFiles */,
+				D12A029A20D227BB0033E761 /* hexbot.bundle in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D1881E561F2BF37500A42560 /* hexbot.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hexbot.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D12A029820D2268A0033E761 /* hexbot.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hexbot.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D12A029920D2268A0033E761 /* hexbot copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "hexbot copy-Info.plist"; path = "/Users/desertkun/Documents/Work/hexbot/core/projects/mac/hexbot copy-Info.plist"; sourceTree = "<absolute>"; };
 		D1881E661F2BF3F300A42560 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1881E681F2BF4AD00A42560 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../src/main.cpp; sourceTree = "<group>"; };
 		D1881E691F2BF4AD00A42560 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = main.h; path = ../../src/main.h; sourceTree = "<group>"; };
@@ -35,7 +36,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D1881E531F2BF37500A42560 /* Frameworks */ = {
+		D12A029120D2268A0033E761 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,13 +52,14 @@
 				D1881E661F2BF3F300A42560 /* Info.plist */,
 				D1881E5F1F2BF3AB00A42560 /* src */,
 				D1881E571F2BF37500A42560 /* Products */,
+				D12A029920D2268A0033E761 /* hexbot copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
 		D1881E571F2BF37500A42560 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D1881E561F2BF37500A42560 /* hexbot.bundle */,
+				D12A029820D2268A0033E761 /* hexbot.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,14 +78,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D1881E551F2BF37500A42560 /* hexbot */ = {
+		D12A028D20D2268A0033E761 /* hexbot */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D1881E5C1F2BF37500A42560 /* Build configuration list for PBXNativeTarget "hexbot" */;
+			buildConfigurationList = D12A029520D2268A0033E761 /* Build configuration list for PBXNativeTarget "hexbot" */;
 			buildPhases = (
-				D1881E521F2BF37500A42560 /* Sources */,
-				D1881E531F2BF37500A42560 /* Frameworks */,
-				D1881E541F2BF37500A42560 /* Resources */,
-				D1881E6E1F2BF76000A42560 /* CopyFiles */,
+				D12A028E20D2268A0033E761 /* Sources */,
+				D12A029120D2268A0033E761 /* Frameworks */,
+				D12A029220D2268A0033E761 /* Resources */,
+				D12A029320D2268A0033E761 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -91,7 +93,7 @@
 			);
 			name = hexbot;
 			productName = hexbot;
-			productReference = D1881E561F2BF37500A42560 /* hexbot.bundle */;
+			productReference = D12A029820D2268A0033E761 /* hexbot.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -102,12 +104,6 @@
 			attributes = {
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = desertkun;
-				TargetAttributes = {
-					D1881E551F2BF37500A42560 = {
-						CreatedOnToolsVersion = 8.3.3;
-						ProvisioningStyle = Automatic;
-					};
-				};
 			};
 			buildConfigurationList = D1881E511F2BF37400A42560 /* Build configuration list for PBXProject "hexbot" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -121,13 +117,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D1881E551F2BF37500A42560 /* hexbot */,
+				D12A028D20D2268A0033E761 /* hexbot */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D1881E541F2BF37500A42560 /* Resources */ = {
+		D12A029220D2268A0033E761 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -137,18 +133,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D1881E521F2BF37500A42560 /* Sources */ = {
+		D12A028E20D2268A0033E761 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1881E6D1F2BF4AD00A42560 /* api.cpp in Sources */,
-				D1881E6C1F2BF4AD00A42560 /* main.cpp in Sources */,
+				D12A028F20D2268A0033E761 /* api.cpp in Sources */,
+				D12A029020D2268A0033E761 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		D12A029620D2268A0033E761 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = NO;
+				INFOPLIST_FILE = "hexbot copy-Info.plist";
+				INSTALL_PATH = ../../../unity/Assets/Plugins;
+				PRODUCT_BUNDLE_IDENTIFIER = desertkun.hexbot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SYMROOT = build;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		D12A029720D2268A0033E761 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = NO;
+				INFOPLIST_FILE = "hexbot copy-Info.plist";
+				INSTALL_PATH = ../../../unity/Assets/Plugins;
+				PRODUCT_BUNDLE_IDENTIFIER = desertkun.hexbot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SYMROOT = build;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		D1881E5A1F2BF37500A42560 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -238,51 +262,23 @@
 			};
 			name = Release;
 		};
-		D1881E5D1F2BF37500A42560 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = NO;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = ../../../unity/Assets/Plugins;
-				PRODUCT_BUNDLE_IDENTIFIER = desertkun.hexbot;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SYMROOT = build;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		D1881E5E1F2BF37500A42560 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = NO;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = ../../../unity/Assets/Plugins;
-				PRODUCT_BUNDLE_IDENTIFIER = desertkun.hexbot;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SYMROOT = build;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D12A029520D2268A0033E761 /* Build configuration list for PBXNativeTarget "hexbot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D12A029620D2268A0033E761 /* Debug */,
+				D12A029720D2268A0033E761 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D1881E511F2BF37400A42560 /* Build configuration list for PBXProject "hexbot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D1881E5A1F2BF37500A42560 /* Debug */,
 				D1881E5B1F2BF37500A42560 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D1881E5C1F2BF37500A42560 /* Build configuration list for PBXNativeTarget "hexbot" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D1881E5D1F2BF37500A42560 /* Debug */,
-				D1881E5E1F2BF37500A42560 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

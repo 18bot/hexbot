@@ -3,6 +3,7 @@
 #include "main.h"
 
 int RoboInit(
+    const char* contentsDirectory,
     api::LogCallback logCallback,
     api::GetGyroscopeDataCallback getGyroscopeDataCallback,
     api::GetAccelerometerDataCallback getAccelerometerDataCallback,

@@ -69,16 +69,37 @@ void Hexbot::update(float dt)
 {
     m_timer += dt;
     
-    if (m_timer > 1)
+    if (m_timer > 0.5)
     {
         m_timer = 0;
         
+        /*
         requestCameraSnapshot([](int width, int height, int dataLength, void* data)
         {
             int a = 0;
         });
+        */
         
-        moveServo(randomInt(0, 17), randomFloat(-90, 90), randomFloat(0.5f, 5.0f));
+        float f = randomFloat(-90, 90);
+        
+        moveServo(0, -f, 1.0f);
+        
+        /*
+        moveServo(1, -f, 1.0f);
+        moveServo(4, -f, 1.0f);
+        moveServo(7, -f, 1.0f);
+        moveServo(10, f, 1.0f);
+        moveServo(13, f, 1.0f);
+        moveServo(16, f, 1.0f);
+        
+        moveServo(2, f, 1.0f);
+        moveServo(5, f, 1.0f);
+        moveServo(8, f, 1.0f);
+        moveServo(11, -f, 1.0f);
+        moveServo(14, -f, 1.0f);
+        moveServo(17, -f, 1.0f);
+        
+        */
     }
 }
 
