@@ -3,13 +3,10 @@
 #define HEXBOT_MAIN
 
 #include "api.h"
-
-#include <memory>
-#include <string>
-#include <random>
-#include <functional>
+#include "utils.h"
 
 typedef std::shared_ptr<class Hexbot> HexbotPtr;
+typedef std::shared_ptr<class Animation> AnimationPtr;
 
 class Hexbot
 {
@@ -20,13 +17,17 @@ class Hexbot
         typedef std::function< void(int width, int height, int dataLength, void* data)> SnapshotCallback;
     
     public:
-        static int Create(api::LogCallback logCallback,
+        static int Create(
+            const std::string& contentsDirectory,
+            api::LogCallback logCallback,
             api::GetGyroscopeDataCallback getGyroscopeDataCallback,
             api::GetAccelerometerDataCallback getAccelerometerDataCallback,
             api::MoveServoCallback moveServoCallback,
             api::RequestCameraSnapshotCallback requestCameraSnapshotCallback);
     
-        Hexbot(api::LogCallback logCallback,
+        Hexbot(
+            const std::string& contentsDirectory,
+            api::LogCallback logCallback,
             api::GetGyroscopeDataCallback getGyroscopeDataCallback,
             api::GetAccelerometerDataCallback getAccelerometerDataCallback,
             api::MoveServoCallback moveServoCallback,
@@ -53,6 +54,7 @@ class Hexbot
     private:
         static HexbotPtr s_instance;
     
+        std::string m_contentsDirectory;
         api::LogCallback m_logCallback;
         api::GetGyroscopeDataCallback m_getGyroscopeDataCallback;
         api::GetAccelerometerDataCallback m_getAccelerometerDataCallback;
@@ -61,6 +63,7 @@ class Hexbot
     
         SnapshotCallback m_currentSnapshotCallback;
     
+        AnimationPtr m_forwardAnimation;
 };
 
 #endif

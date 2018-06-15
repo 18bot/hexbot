@@ -11,6 +11,7 @@ int RoboInit(
     api::RequestCameraSnapshotCallback requestCameraSnapshotCallback
 ) {
     return Hexbot::Create(
+        std::string(contentsDirectory),
         logCallback,
         getGyroscopeDataCallback,
         getAccelerometerDataCallback,

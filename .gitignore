@@ -10,3 +10,8 @@ unity/Assets/Plugins/hexbot*
 /unity/.vs
 /unity/builds
 /unity/Packages
+/core/projects/mac/hexbot.build
+/core/projects/mac/CMakeScripts
+/core/projects/mac/CMakeFiles
+/core/projects/mac/CMakeCache.txt
+/core/projects/mac/cmake_install.cmake

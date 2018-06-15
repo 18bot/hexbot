@@ -2,17 +2,20 @@
 #include <stdio.h>
 
 #include "main.h"
+#include "animation.h"
 
 HexbotPtr Hexbot::s_instance = nullptr;
 
 
-int Hexbot::Create(api::LogCallback logCallback,
+int Hexbot::Create(
+    const std::string& contentsDirectory,
+    api::LogCallback logCallback,
     api::GetGyroscopeDataCallback getGyroscopeDataCallback,
     api::GetAccelerometerDataCallback getAccelerometerDataCallback,
     api::MoveServoCallback moveServoCallback,
     api::RequestCameraSnapshotCallback requestCameraSnapshotCallback)
 {
-    s_instance = std::make_shared<Hexbot>(logCallback, getGyroscopeDataCallback,
+    s_instance = std::make_shared<Hexbot>(contentsDirectory, logCallback, getGyroscopeDataCallback,
         getAccelerometerDataCallback, moveServoCallback, requestCameraSnapshotCallback);
     
     return 1;
@@ -82,7 +85,9 @@ void Hexbot::update(float dt)
         
         float f = randomFloat(-90, 90);
         
-        moveServo(0, -f, 1.0f);
+        moveServo(0, 45, 1.0f);
+        moveServo(1, -45, 1.0f);
+        moveServo(2, -20, 1.0f);
         
         /*
         moveServo(1, -f, 1.0f);
@@ -103,17 +108,22 @@ void Hexbot::update(float dt)
     }
 }
 
-Hexbot::Hexbot(api::LogCallback logCallback, api::GetGyroscopeDataCallback getGyroscopeDataCallback,
+Hexbot::Hexbot(
+        const std::string& contentsDirectory,
+        api::LogCallback logCallback, api::GetGyroscopeDataCallback getGyroscopeDataCallback,
         api::GetAccelerometerDataCallback getAccelerometerDataCallback, api::MoveServoCallback moveServoCallback,
         api::RequestCameraSnapshotCallback requestCameraSnapshotCallback) :
     m_timer(0),
     m_randomGen(m_randomDevice()),
 
+    m_contentsDirectory(contentsDirectory),
     m_logCallback(logCallback),
     m_getGyroscopeDataCallback(getGyroscopeDataCallback),
     m_getAccelerometerDataCallback(getAccelerometerDataCallback),
     m_moveServoCallback(moveServoCallback),
     m_requestCameraSnapshotCallback(requestCameraSnapshotCallback)
 {
+    m_forwardAnimation = Animation::Create(m_contentsDirectory + "/forward.json");
+    
     log("Hexbot Core Initialized!");
 }
