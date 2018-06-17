@@ -70,42 +70,7 @@ void Hexbot::cameraSnapshot(int width, int height, int dataLength, void* data)
 
 void Hexbot::update(float dt)
 {
-    m_timer += dt;
-    
-    if (m_timer > 0.5)
-    {
-        m_timer = 0;
-        
-        /*
-        requestCameraSnapshot([](int width, int height, int dataLength, void* data)
-        {
-            int a = 0;
-        });
-        */
-        
-        float f = randomFloat(-90, 90);
-        
-        moveServo(0, 45, 1.0f);
-        moveServo(1, -45, 1.0f);
-        moveServo(2, -20, 1.0f);
-        
-        /*
-        moveServo(1, -f, 1.0f);
-        moveServo(4, -f, 1.0f);
-        moveServo(7, -f, 1.0f);
-        moveServo(10, f, 1.0f);
-        moveServo(13, f, 1.0f);
-        moveServo(16, f, 1.0f);
-        
-        moveServo(2, f, 1.0f);
-        moveServo(5, f, 1.0f);
-        moveServo(8, f, 1.0f);
-        moveServo(11, -f, 1.0f);
-        moveServo(14, -f, 1.0f);
-        moveServo(17, -f, 1.0f);
-        
-        */
-    }
+    m_player.update(dt);
 }
 
 Hexbot::Hexbot(
@@ -113,7 +78,6 @@ Hexbot::Hexbot(
         api::LogCallback logCallback, api::GetGyroscopeDataCallback getGyroscopeDataCallback,
         api::GetAccelerometerDataCallback getAccelerometerDataCallback, api::MoveServoCallback moveServoCallback,
         api::RequestCameraSnapshotCallback requestCameraSnapshotCallback) :
-    m_timer(0),
     m_randomGen(m_randomDevice()),
 
     m_contentsDirectory(contentsDirectory),
@@ -124,6 +88,9 @@ Hexbot::Hexbot(
     m_requestCameraSnapshotCallback(requestCameraSnapshotCallback)
 {
     m_forwardAnimation = Animation::Create(m_contentsDirectory + "/forward.json");
+    
+    m_forwardAnimationGroup = AnimationGroup::Create(m_contentsDirectory + "/forward-group.json");
+    m_forwardAnimationGroup->play(m_forwardAnimation, m_player);
     
     log("Hexbot Core Initialized!");
 }

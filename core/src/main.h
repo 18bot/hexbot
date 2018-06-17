@@ -4,14 +4,14 @@
 
 #include "api.h"
 #include "utils.h"
+#include "animation.h"
 
 typedef std::shared_ptr<class Hexbot> HexbotPtr;
-typedef std::shared_ptr<class Animation> AnimationPtr;
 
 class Hexbot
 {
     public:
-        static HexbotPtr& getInstance() { return s_instance; }
+        static const HexbotPtr& getInstance() { return s_instance; }
     
     public:
         typedef std::function< void(int width, int height, int dataLength, void* data)> SnapshotCallback;
@@ -45,11 +45,13 @@ class Hexbot
         bool getAccelerometerData(float& x, float& y, float& z);
         bool moveServo(int servo, float angle, float time);
         bool requestCameraSnapshot(SnapshotCallback callback);
-        
+    
+        const AnimationPlayer& getPlayer() const { return m_player; }
+        AnimationPlayer& getPlayer() { return m_player; }
+    
     private:
         std::random_device m_randomDevice;
         std::mt19937_64 m_randomGen;
-        float m_timer;
     
     private:
         static HexbotPtr s_instance;
@@ -64,6 +66,9 @@ class Hexbot
         SnapshotCallback m_currentSnapshotCallback;
     
         AnimationPtr m_forwardAnimation;
+        AnimationGroupPtr m_forwardAnimationGroup;
+    
+        AnimationPlayer m_player;
 };
 
 #endif

@@ -1,0 +1,52 @@
+{
+	"tracks": [
+		{
+			"bindings": {
+				"hip": 0,
+				"knee": 1,
+				"foot": 2
+			},
+			"delay": 0
+		},
+		{
+			"bindings": {
+				"hip": 3,
+				"knee": 4,
+				"foot": 5
+			},
+			"delay": 0.4
+		},
+		{
+			"bindings": {
+				"hip": 6,
+				"knee": 7,
+				"foot": 8
+			},
+			"delay": 0.8
+		},
+		{
+			"bindings": {
+				"hip": 15,
+				"knee": 16,
+				"foot": 17
+			},
+			"delay": 0
+		},
+		{
+			"bindings": {
+				"hip": 12,
+				"knee": 13,
+				"foot": 14
+			},
+			"delay": 0.4
+		},
+		{
+			"bindings": {
+				"hip": 9,
+				"knee": 10,
+				"foot": 11
+			},
+			"delay": 0.8
+		}
+	]
+}

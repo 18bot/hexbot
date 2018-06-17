@@ -1,32 +1,27 @@
 {
 	"loop": true,
-	"length": 2,
+	"length": 1.2,
 	"frames": [
 		{
 			"position": 0,
-			"moves": [
-				[1, -45, 0.5],
-				[2, -20, 0.5]
-			]
+			"moves": {
+				"knee": [-60, 0.3],
+				"foot": [-60, 0.3],
+				"hip": [25, 0.6]
+			}
 		},
 		{
-			"position": 0.25,
-			"moves": [
-				[0, 45, 0.5]
-			]
+			"position": 0.3,
+			"moves": {
+				"knee": [0, 0.3],
+				"foot": [0, 0.3]
+			}
 		},
 		{
-			"position": 1,
-			"moves": [
-				[1, 0, 0.5],
-				[2, 0, 0.5]
-			]
-		},
-		{
-			"position": 1.5,
-			"moves": [
-				[0, -45, 0.5]
-			]
+			"position": 0.6,
+			"moves": {
+				"hip": [-25, 0.6]
+			}
 		}
 	]
 }

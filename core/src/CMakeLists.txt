@@ -17,12 +17,18 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../external/jsoncpp" "jsoncpp")
 if(APPLE)
 	set(MACOSX_BUNDLE_BUNDLE_NAME hexbot)
 	add_library(hexbot MODULE ${HEXBOT_SRC})
+
+	set(OUTPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../unity/Assets/Plugins")
 	
 	set_target_properties(hexbot PROPERTIES 
 		BUNDLE TRUE
-		LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../../unity/builds/mac/hexbot.app/Contents/Plugins"
-		LIBRARY_OUTPUT_DIRECTORY_DEBUG "${CMAKE_CURRENT_SOURCE_DIR}/../../unity/builds/mac/hexbot.app/Contents/Plugins"
-		LIBRARY_OUTPUT_DIRECTORY_RELEASE "${CMAKE_CURRENT_SOURCE_DIR}/../../unity/builds/mac/hexbot.app/Contents/Plugins"
+		LIBRARY_OUTPUT_DIRECTORY $OUTPUT_DIR
+		LIBRARY_OUTPUT_DIRECTORY_DEBUG $OUTPUT_DIR
+		LIBRARY_OUTPUT_DIRECTORY_RELEASE $OUTPUT_DIR
+	)
+
+	add_custom_command(TARGET hexbot POST_BUILD
+	    COMMAND cp -R "${OUTPUT_DIR}/hexbot.bundle" "${CMAKE_CURRENT_SOURCE_DIR}/../../unity/builds/mac/hexbot.app/Contents/Plugins"
 	)
 
 else()

@@ -103,7 +103,13 @@ public class Robo : MonoBehaviour
         DelegateMoveServo = new MoveServoCallback(InternalMoveServo);
         DelegateRequestCameraSnapshot = new RequestCameraSnapshotCallback(InternalRequestCameraSnapshot);
 
-        IntPtr contentsDirectory = Marshal.StringToHGlobalAnsi(Application.dataPath + "/Resources/Data/StreamingAssets");
+#if UNITY_EDITOR
+        String contentsPath = Application.dataPath + "/StreamingAssets";
+#else
+        String contentsPath = Application.dataPath + "/Resources/Data/StreamingAssets";
+#endif
+
+        IntPtr contentsDirectory = Marshal.StringToHGlobalAnsi(contentsPath);
 
         int result = RoboInit(
             contentsDirectory,

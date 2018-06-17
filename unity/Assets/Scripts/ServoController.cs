@@ -5,6 +5,7 @@ using UnityEngine;
 public class ServoController : MonoBehaviour 
 {
     public Axis axis;
+    public bool reverse;
 
     private float currentAngle;
 
@@ -55,13 +56,8 @@ public class ServoController : MonoBehaviour
 
     public bool MoveTo(float angle, float time)
     {
-        if (status == Status.Busy)
-        {
-            return false;
-        }
-
         startAngle = currentAngle;
-        targetAngle = angle;
+        targetAngle = reverse ? -angle : angle;
         moveTime = 0;
         targetTime = time;
 

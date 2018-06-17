@@ -11,6 +11,7 @@
 #include <fstream>
 #include <streambuf>
 #include <functional>
+#include <list>
 
 #include "json/value.h"
 
