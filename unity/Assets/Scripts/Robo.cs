@@ -7,6 +7,8 @@ using System.Runtime.InteropServices;
 
 public class Robo : MonoBehaviour 
 {
+    const string libraryName = "hexbot";
+
     public ServoModule servoModule;
     public MotionDetectorDevice motionDetectorDevice;
     public RenderTexture cameraTexture;
@@ -23,7 +25,7 @@ public class Robo : MonoBehaviour
 
     // API methods
 
-    [DllImport ("hexbot")]
+    [DllImport (libraryName)]
     private static extern int RoboInit(
         IntPtr contentsDirectory,
         LogCallback logCallback,
@@ -33,10 +35,10 @@ public class Robo : MonoBehaviour
         RequestCameraSnapshotCallback requestCameraSnapshotCallback
     );
 
-    [DllImport ("hexbot")]
+    [DllImport (libraryName)]
     private static extern void RoboUpdate(float dt);
 
-    [DllImport ("hexbot")]
+    [DllImport (libraryName)]
     private static extern void RoboCameraSnapshot(int width, int height, int dataLength, IntPtr data);
 
     private RequestCameraSnapshotCallback DelegateRequestCameraSnapshot;
@@ -103,13 +105,7 @@ public class Robo : MonoBehaviour
         DelegateMoveServo = new MoveServoCallback(InternalMoveServo);
         DelegateRequestCameraSnapshot = new RequestCameraSnapshotCallback(InternalRequestCameraSnapshot);
 
-#if UNITY_EDITOR
-        String contentsPath = Application.dataPath + "/StreamingAssets";
-#else
-        String contentsPath = Application.dataPath + "/Resources/Data/StreamingAssets";
-#endif
-
-        IntPtr contentsDirectory = Marshal.StringToHGlobalAnsi(contentsPath);
+        IntPtr contentsDirectory = Marshal.StringToHGlobalAnsi(Application.streamingAssetsPath);
 
         int result = RoboInit(
             contentsDirectory,

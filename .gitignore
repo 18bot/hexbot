@@ -12,3 +12,5 @@ unity/Assets/Plugins/hexbot*
 /unity/Packages
 /core/projects/mac
 /core/projects/windows
+/core/build
+/bin
