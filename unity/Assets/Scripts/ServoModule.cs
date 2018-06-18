@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class ServoModule : MonoBehaviour 
 {
+    public float speedCoeficient = 1.0f;
+
 	public ServoController[] servos;
 
-    public bool MoveTo(int servo, float angle, float time)
+	public void Awake()
+	{
+        foreach (ServoController servo in servos)
+        {
+            servo.servoModule = this;
+        }
+	}
+
+	public bool MoveTo(int servo, float angle, float time)
     {
         if (servo < 0 || servo >= servos.Length)
             return false;

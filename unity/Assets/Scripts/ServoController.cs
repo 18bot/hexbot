@@ -6,6 +6,7 @@ public class ServoController : MonoBehaviour
 {
     public Axis axis;
     public bool reverse;
+    public ServoModule servoModule;
 
     private float currentAngle;
 
@@ -28,11 +29,22 @@ public class ServoController : MonoBehaviour
         X, Y, Z
     }
 
-    public void Update()
+    public bool MoveTo(float angle, float time)
+    {
+        startAngle = currentAngle;
+        targetAngle = reverse ? -angle : angle;
+        moveTime = 0;
+        targetTime = time;
+
+        status = Status.Busy;
+        return true;
+    }
+
+    public void FixedUpdate()
     {
         if (status == Status.Busy)
         {
-            float dt = Time.deltaTime;
+            float dt = Time.deltaTime * servoModule.speedCoeficient;
 
             moveTime += dt;
 
@@ -52,21 +64,7 @@ public class ServoController : MonoBehaviour
 
             currentAngle = Mathf.LerpAngle(startAngle, targetAngle, progress);
         }
-    }
 
-    public bool MoveTo(float angle, float time)
-    {
-        startAngle = currentAngle;
-        targetAngle = reverse ? -angle : angle;
-        moveTime = 0;
-        targetTime = time;
-
-        status = Status.Busy;
-        return true;
-    }
-
-    public void FixedUpdate()
-    {
         Vector3 v;
 
         switch (axis)

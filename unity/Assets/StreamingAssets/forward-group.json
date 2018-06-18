@@ -2,7 +2,7 @@
 	"tracks": [
 		{
 			"bindings": {
-				"hip": 0,
+				"hip_far": 0,
 				"knee": 1,
 				"foot": 2
 			},
@@ -18,7 +18,7 @@
 		},
 		{
 			"bindings": {
-				"hip": 6,
+				"hip_back": 6,
 				"knee": 7,
 				"foot": 8
 			},
@@ -26,7 +26,7 @@
 		},
 		{
 			"bindings": {
-				"hip": 15,
+				"hip_far": 15,
 				"knee": 16,
 				"foot": 17
 			},
@@ -42,7 +42,7 @@
 		},
 		{
 			"bindings": {
-				"hip": 9,
+				"hip_back": 9,
 				"knee": 10,
 				"foot": 11
 			},

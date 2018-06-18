@@ -13,6 +13,7 @@ public class Robo : MonoBehaviour
     public MotionDetectorDevice motionDetectorDevice;
     public RenderTexture cameraTexture;
 
+
     private Texture2D cameraTexture2D;
 
     // delegates
@@ -120,8 +121,8 @@ public class Robo : MonoBehaviour
         Debug.Log("Delegate init: " + result);
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        RoboUpdate(Time.deltaTime);
+        RoboUpdate(Time.deltaTime * servoModule.speedCoeficient);
     }
 }
