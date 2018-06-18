@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-public class Robo : MonoBehaviour 
+public class Robo : MonoBehaviour
 {
     const string libraryName = "hexbot";
 
