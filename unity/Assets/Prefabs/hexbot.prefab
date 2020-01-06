@@ -408,8 +408,7 @@ GameObject:
   - component: {fileID: 114770994276266124}
   - component: {fileID: 54749743441579422}
   - component: {fileID: 114901987687484310}
-  - component: {fileID: 23327667167511248}
-  - component: {fileID: 33486372507704778}
+  - component: {fileID: 65825388085838466}
   m_Layer: 0
   m_Name: hexbot
   m_TagString: Untagged
@@ -5016,41 +5015,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!23 &23327667167511248
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1165511680613868}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 2100000, guid: 6f46a08e94bf946b8956425b1ae9712e, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!23 &23332582016074454
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -7130,13 +7094,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1811104948328168}
   m_Mesh: {fileID: 4300000, guid: b8c211bb1c09c42feb4056542ad1ebe7, type: 3}
---- !u!33 &33486372507704778
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1165511680613868}
-  m_Mesh: {fileID: 0}
 --- !u!33 &33491432317599006
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -7630,7 +7587,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 10
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -8017,6 +7974,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.594997, y: 0.59978026, z: 0.59500074}
   m_Center: {x: -0.00000044593205, y: -0.19735001, z: -0.000000066970046}
+--- !u!65 &65825388085838466
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1165511680613868}
+  m_Material: {fileID: 13400000, guid: aaa805011fc2249748faa047ee5e4119, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4962096, y: 1.4266474, z: 0.6016748}
+  m_Center: {x: -0.0870502, y: 0.010627687, z: 0.04142885}
 --- !u!65 &65925063778743736
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -8054,6 +8023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 2
   reverse: 1
+  servoModule: {fileID: 0}
 --- !u!114 &114105404695510168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8066,7 +8036,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 1
-  reverse: 0
+  reverse: 1
+  servoModule: {fileID: 0}
 --- !u!114 &114123094959062444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8079,7 +8050,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 1
-  reverse: 0
+  reverse: 1
+  servoModule: {fileID: 0}
 --- !u!114 &114394770891700082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8093,6 +8065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 2
   reverse: 0
+  servoModule: {fileID: 0}
 --- !u!114 &114405860714024478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8106,6 +8079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 2
   reverse: 0
+  servoModule: {fileID: 0}
 --- !u!114 &114455932962431452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8118,7 +8092,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 1
-  reverse: 0
+  reverse: 1
+  servoModule: {fileID: 0}
 --- !u!114 &114476265220542956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8131,7 +8106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 1
-  reverse: 0
+  reverse: 1
+  servoModule: {fileID: 0}
 --- !u!114 &114511161451878362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8144,7 +8120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 2
-  reverse: 1
+  reverse: 0
+  servoModule: {fileID: 0}
 --- !u!114 &114606048936315520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8157,7 +8134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 2
-  reverse: 1
+  reverse: 0
+  servoModule: {fileID: 0}
 --- !u!114 &114653751378473020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8171,6 +8149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 2
   reverse: 0
+  servoModule: {fileID: 0}
 --- !u!114 &114720558082814302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8184,6 +8163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 2
   reverse: 0
+  servoModule: {fileID: 0}
 --- !u!114 &114770994276266124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8195,6 +8175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c34469a69ac8425182211f13c16c4dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedCoeficient: 0.5
   servos:
   - {fileID: 114511161451878362}
   - {fileID: 114455932962431452}
@@ -8226,7 +8207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 1
-  reverse: 0
+  reverse: 1
+  servoModule: {fileID: 0}
 --- !u!114 &114828754158158304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8239,7 +8221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 1
-  reverse: 0
+  reverse: 1
+  servoModule: {fileID: 0}
 --- !u!114 &114848911258478498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8252,7 +8235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 2
-  reverse: 1
+  reverse: 0
+  servoModule: {fileID: 0}
 --- !u!114 &114866135863622404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8266,6 +8250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 2
   reverse: 1
+  servoModule: {fileID: 0}
 --- !u!114 &114899496097700982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8279,6 +8264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 2
   reverse: 1
+  servoModule: {fileID: 0}
 --- !u!114 &114899842431554122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8292,6 +8278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 2
   reverse: 0
+  servoModule: {fileID: 0}
 --- !u!114 &114901987687484310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8318,6 +8305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 2
   reverse: 0
+  servoModule: {fileID: 0}
 --- !u!124 &124763542405038386
 Behaviour:
   m_ObjectHideFlags: 1
