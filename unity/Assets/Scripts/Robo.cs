@@ -4,62 +4,80 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Reflection;
 
 public class Robo : MonoBehaviour
 {
-    const string libraryName = "hexbot";
-
+    private ExposedAPI api;
     public ServoModule servoModule;
+
+    /*
     public MotionDetectorDevice motionDetectorDevice;
     public RenderTexture cameraTexture;
-
-
     private Texture2D cameraTexture2D;
+    */
+
+    public class ExposedAPI
+    {
+        private IntPtr _LIB;
+        private IntPtr _RoboInit;
+        private IntPtr _RoboUpdate;
+
+        public delegate int _API_RoboInit(IntPtr contentsDirectory, LogCallback logCallback, MoveServoCallback moveServoCallback);
+        public delegate void _API_RoboUpdate(float dt);
+        public delegate void _API_RoboCameraSnapshot(int width, int height, int dataLength, IntPtr data);
+
+        public int RoboInit(
+            IntPtr contentsDirectory,
+            LogCallback logCallback,
+            MoveServoCallback moveServoCallback
+        )
+        {
+            return Native.Invoke<int, _API_RoboInit>(_LIB, _RoboInit, contentsDirectory, logCallback, moveServoCallback);
+        }
+
+        public void RoboUpdate(float dt)
+        {
+            Native.Invoke<_API_RoboUpdate>(_LIB, _RoboUpdate, dt);
+        }
+
+        public bool Load()
+        {
+            _LIB = Native.LoadLibrary(Application.dataPath + "/Plugins/hexbot.dll");
+
+            if (_LIB == IntPtr.Zero)
+            {
+                return false;
+            }
+
+            Expose();
+
+            return true;
+        }
+
+        public void Unload()
+        {
+            if (_LIB != IntPtr.Zero)
+            {
+                Native.FreeLibrary(_LIB);
+            }
+        }
+
+        void Expose()
+        {
+            _RoboInit = Native.GetProcAddress(_LIB, "RoboInit");
+            _RoboUpdate = Native.GetProcAddress(_LIB, "RoboUpdate");
+        }
+    }
 
     // delegates
 
     public delegate void LogCallback( IntPtr str );
-    public delegate bool GetGyroscopeDataCallback( ref float x, ref float y, ref float z );
-    public delegate bool GetAccelerometerDataCallback( ref float x, ref float y, ref float z );
     public delegate bool MoveServoCallback(int servo, float angle, float time);
-    public delegate bool RequestCameraSnapshotCallback();
+
 
     // API methods
-
-    [DllImport (libraryName)]
-    private static extern int RoboInit(
-        IntPtr contentsDirectory,
-        LogCallback logCallback,
-        GetGyroscopeDataCallback getGyroscopeDataCallback,
-        GetAccelerometerDataCallback getAccelerometerDataCallback,
-        MoveServoCallback moveServoCallback,
-        RequestCameraSnapshotCallback requestCameraSnapshotCallback
-    );
-
-    [DllImport (libraryName)]
-    private static extern void RoboUpdate(float dt);
-
-    [DllImport (libraryName)]
-    private static extern void RoboCameraSnapshot(int width, int height, int dataLength, IntPtr data);
-
-    private RequestCameraSnapshotCallback DelegateRequestCameraSnapshot;
-    private unsafe bool InternalRequestCameraSnapshot()
-    {
-        RenderTexture.active = cameraTexture;
-        cameraTexture2D.ReadPixels(new Rect(0, 0, cameraTexture.width, cameraTexture.height), 0, 0);
-        cameraTexture2D.Apply();
-
-        byte[] rawData = cameraTexture2D.GetRawTextureData();
-
-        fixed (byte* p = rawData)
-        {
-            IntPtr ptr = (IntPtr)p;
-            RoboCameraSnapshot(cameraTexture.width, cameraTexture.height, rawData.Length, ptr);
-        }
-
-        return true;
-    }
-
+    
     private MoveServoCallback DelegateMoveServo;
     private bool InternalMoveServo(int servo, float angle, float time)
     {
@@ -71,58 +89,43 @@ public class Robo : MonoBehaviour
     {
         Debug.Log(Marshal.PtrToStringAnsi(str));
     }
+    
 
-    private GetAccelerometerDataCallback DelegateGetAccelerometerData;
-    private bool InternalGetAccelerometerData( ref float x, ref float y, ref float z )
+    void Awake()
     {
-        Vector3 data = motionDetectorDevice.accelerometer;
+        api = new ExposedAPI();
 
-        x = data.x;
-        y = data.y;
-        z = data.z;
+        if (!api.Load())
+        {
+            Debug.LogError("Failed to load hexbot dll!");
+            return;
+        }
 
-        return true;
-    }
-
-    private GetGyroscopeDataCallback DelegateGetGyroscopeData;
-    private bool InternalGetGyroscopeData( ref float x, ref float y, ref float z )
-    {
-        Vector3 data = motionDetectorDevice.gyroscope;
-
-        x = data.x;
-        y = data.y;
-        z = data.z;
-
-        return true;
-    }
-
-    void Awake() 
-    {
-        cameraTexture2D = new Texture2D(cameraTexture.width, cameraTexture.height, TextureFormat.RGB24, false);
-
+        
+        //cameraTexture2D = new Texture2D(cameraTexture.width, cameraTexture.height, TextureFormat.RGB24, false);
+        
         DelegateLog = new LogCallback(InternalLog);
-        DelegateGetGyroscopeData = new GetGyroscopeDataCallback(InternalGetGyroscopeData);
-        DelegateGetAccelerometerData = new GetAccelerometerDataCallback(InternalGetAccelerometerData);
         DelegateMoveServo = new MoveServoCallback(InternalMoveServo);
-        DelegateRequestCameraSnapshot = new RequestCameraSnapshotCallback(InternalRequestCameraSnapshot);
 
         IntPtr contentsDirectory = Marshal.StringToHGlobalAnsi(Application.streamingAssetsPath);
 
-        int result = RoboInit(
+        int result = api.RoboInit(
             contentsDirectory,
             DelegateLog, 
-            DelegateGetGyroscopeData, 
-            DelegateGetAccelerometerData, 
-            DelegateMoveServo,
-            DelegateRequestCameraSnapshot);
+            DelegateMoveServo);
 
         Marshal.FreeHGlobal(contentsDirectory);
 
         Debug.Log("Delegate init: " + result);
     }
 
+    void OnApplicationQuit()
+    {
+        api.Unload();
+    }
+
     void FixedUpdate()
     {
-        RoboUpdate(Time.deltaTime * servoModule.speedCoeficient);
+        api.RoboUpdate(Time.deltaTime * servoModule.speedCoeficient);
     }
 }
