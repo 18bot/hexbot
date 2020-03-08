@@ -16,11 +16,11 @@ public class ServoModule : MonoBehaviour
         }
 	}
 
-	public bool MoveTo(int servo, float angle, float time)
+    public bool MoveTo(int servo, float angle, uint time)
     {
         if (servo < 0 || servo >= servos.Length)
             return false;
 
-        return servos[servo].MoveTo(Mathf.Clamp(angle, -90, 90), Mathf.Clamp(time, 0.001f, 10.0f));
+        return servos[servo].MoveTo(Mathf.Clamp(angle, -90, 90), Mathf.Clamp((float)time / 1000f, 0.001f, 10.0f));
     }
 }

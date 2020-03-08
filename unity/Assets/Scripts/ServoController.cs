@@ -5,7 +5,6 @@ using UnityEngine;
 public class ServoController : MonoBehaviour 
 {
     public Axis axis;
-    public bool reverse;
     public ServoModule servoModule;
 
     private float currentAngle;
@@ -29,10 +28,25 @@ public class ServoController : MonoBehaviour
         X, Y, Z
     }
 
-    public bool MoveTo(float angle, float time)
+	public void Awake()
+    {
+        ConfigurableJoint joint = GetComponent<ConfigurableJoint>();
+
+        JointDrive jd = new JointDrive();
+        jd.maximumForce = 100000;
+        jd.positionSpring = 10000;
+        jd.positionDamper = 2;
+
+        joint.angularXDrive = jd;
+        joint.angularYZDrive = jd;
+        //GetComponent<ConfigurableJoint>().angularYZDrive.positionSpring = 100;
+        //GetComponent<ConfigurableJoint>().angularXDrive.positionSpring = 100;
+	}
+
+	public bool MoveTo(float angle, float time)
     {
         startAngle = currentAngle;
-        targetAngle = reverse ? -angle : angle;
+        targetAngle = angle;
         moveTime = 0;
         targetTime = time;
 

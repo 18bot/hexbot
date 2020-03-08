@@ -250,7 +250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4683686917378158, guid: e3cc04cb682bf40cd8f4af82029a3e4f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.57
+      value: 3.63
       objectReference: {fileID: 0}
     - target: {fileID: 4683686917378158, guid: e3cc04cb682bf40cd8f4af82029a3e4f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -280,6 +280,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsKinematic
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54749743441579422, guid: e3cc04cb682bf40cd8f4af82029a3e4f,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114455932962431452, guid: e3cc04cb682bf40cd8f4af82029a3e4f,
+        type: 3}
+      propertyPath: reverse
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114476265220542956, guid: e3cc04cb682bf40cd8f4af82029a3e4f,
+        type: 3}
+      propertyPath: reverse
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114770994276266124, guid: e3cc04cb682bf40cd8f4af82029a3e4f,
+        type: 3}
+      propertyPath: speedCoeficient
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 153417442493385942, guid: e3cc04cb682bf40cd8f4af82029a3e4f,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.0009884536
+      objectReference: {fileID: 0}
+    - target: {fileID: 153417442493385942, guid: e3cc04cb682bf40cd8f4af82029a3e4f,
+        type: 3}
+      propertyPath: m_AngularYZDrive.positionSpring
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3cc04cb682bf40cd8f4af82029a3e4f, type: 3}

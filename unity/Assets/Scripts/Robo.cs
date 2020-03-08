@@ -24,7 +24,7 @@ public class Robo : MonoBehaviour
         private IntPtr _RoboUpdate;
 
         public delegate int _API_RoboInit(IntPtr contentsDirectory, LogCallback logCallback, MoveServoCallback moveServoCallback);
-        public delegate void _API_RoboUpdate(float dt);
+        public delegate void _API_RoboUpdate(uint dt);
         public delegate void _API_RoboCameraSnapshot(int width, int height, int dataLength, IntPtr data);
 
         public int RoboInit(
@@ -36,7 +36,7 @@ public class Robo : MonoBehaviour
             return Native.Invoke<int, _API_RoboInit>(_LIB, _RoboInit, contentsDirectory, logCallback, moveServoCallback);
         }
 
-        public void RoboUpdate(float dt)
+        public void RoboUpdate(uint dt)
         {
             Native.Invoke<_API_RoboUpdate>(_LIB, _RoboUpdate, dt);
         }
@@ -73,13 +73,13 @@ public class Robo : MonoBehaviour
     // delegates
 
     public delegate void LogCallback( IntPtr str );
-    public delegate bool MoveServoCallback(int servo, float angle, float time);
+    public delegate bool MoveServoCallback(int servo, float angle, uint time);
 
 
     // API methods
     
     private MoveServoCallback DelegateMoveServo;
-    private bool InternalMoveServo(int servo, float angle, float time)
+    private bool InternalMoveServo(int servo, float angle, uint time)
     {
         return servoModule.MoveTo(servo, angle, time);
     }
@@ -126,6 +126,6 @@ public class Robo : MonoBehaviour
 
     void FixedUpdate()
     {
-        api.RoboUpdate(Time.deltaTime * servoModule.speedCoeficient);
+        api.RoboUpdate((uint)(1000 * Time.deltaTime * servoModule.speedCoeficient));
     }
 }
