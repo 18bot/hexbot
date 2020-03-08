@@ -43,7 +43,7 @@ public class Robo : MonoBehaviour
 
         public bool Load()
         {
-            _LIB = Native.LoadLibrary(Application.dataPath + "/Plugins/hexbot.dll");
+            _LIB = Native.LoadLibrary(Application.dataPath + "/Plugins", "hexbot");
 
             if (_LIB == IntPtr.Zero)
             {
