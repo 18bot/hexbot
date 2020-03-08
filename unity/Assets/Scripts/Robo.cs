@@ -22,9 +22,22 @@ public class Robo : MonoBehaviour
         private IntPtr _LIB;
         private IntPtr _RoboInit;
         private IntPtr _RoboUpdate;
+        private IntPtr _RoboMove;
+        private IntPtr _RoboStopMoving;
+
+        public enum MoveState
+        {
+            MOVE_Stop = 0,
+            MOVE_Forward,
+            MOVE_Backward,
+            MOVE_Left,
+            MOVE_Right,
+            MOVE_Sit
+        }
 
         public delegate int _API_RoboInit(IntPtr contentsDirectory, LogCallback logCallback, MoveServoCallback moveServoCallback);
         public delegate void _API_RoboUpdate(uint dt);
+        public delegate void _API_Move(int state);
         public delegate void _API_RoboCameraSnapshot(int width, int height, int dataLength, IntPtr data);
 
         public int RoboInit(
@@ -39,6 +52,11 @@ public class Robo : MonoBehaviour
         public void RoboUpdate(uint dt)
         {
             Native.Invoke<_API_RoboUpdate>(_LIB, _RoboUpdate, dt);
+        }
+
+        public void RoboMove(MoveState state)
+        {
+            Native.Invoke<_API_Move>(_LIB, _RoboMove, (int)state);
         }
 
         public bool Load()
@@ -67,6 +85,8 @@ public class Robo : MonoBehaviour
         {
             _RoboInit = Native.GetProcAddress(_LIB, "RoboInit");
             _RoboUpdate = Native.GetProcAddress(_LIB, "RoboUpdate");
+
+            _RoboMove = Native.GetProcAddress(_LIB, "RoboMove");
         }
     }
 
@@ -127,5 +147,30 @@ public class Robo : MonoBehaviour
     void FixedUpdate()
     {
         api.RoboUpdate((uint)(1000 * Time.deltaTime * servoModule.speedCoeficient));
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            api.RoboMove(ExposedAPI.MoveState.MOVE_Forward);
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            api.RoboMove(ExposedAPI.MoveState.MOVE_Backward);
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            api.RoboMove(ExposedAPI.MoveState.MOVE_Left);
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            api.RoboMove(ExposedAPI.MoveState.MOVE_Right);
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            api.RoboMove(ExposedAPI.MoveState.MOVE_Stop);
+        }
+        else if (Input.GetKeyDown(KeyCode.Z))
+        {
+            api.RoboMove(ExposedAPI.MoveState.MOVE_Sit);
+        }
     }
 }
