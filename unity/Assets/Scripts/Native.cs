@@ -29,7 +29,7 @@ public static IntPtr LoadLibrary(string directory, string libname)
 {
 #if (UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN)
     string path = directory + "/" + libname + ".dll";
-    return WIN_LoadLibrary();
+    return WIN_LoadLibrary(path);
 #elif (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
     string path = directory + "/lib" + libname + ".dylib";
     return UNIX_LoadLibrary(path, 0);
